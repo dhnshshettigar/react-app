@@ -46,7 +46,7 @@ const Home = () => {
                 <button type="submit" className="search-button">Search</button>
             </form>
             <div className="movies-gird">
-                {movies.map((movie) => (
+                {Array.isArray(movies) && movies.map((movie) => (
                     movie.title.toLowerCase().startsWith(searchQuery) &&
                         <MovieCard movie={movie} key={movie.id} /> 
                 ))}
