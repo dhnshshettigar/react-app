@@ -31,24 +31,45 @@ const Home = () => {
 
     return (
         <div className="home">
-            <form onSubmit={(e) =>{
-                    e.preventDefault() 
-                    alert(searchQuery)
-                }} 
-                    className="search-form">
+            <form
+                onSubmit={async (e) => {
+                    e.preventDefault();
+                    if (!searchQuery.trim()) return
+                    if(loading) return
+                    setLoading(true)
+                    try {
+                        const searchResults = await searchMovies(searchQuery)
+                        setMovies(searchResults)
+                        setError(null)
+                    } catch (error) {
+                        console.log(error)
+                        setError("Failed to search movies...")
+                    } finally{
+                        setLoading(false)
+                    }
+                }}
+
+                className="search-form"
+            >
                 <input
                     type="text"
                     className="search-input"
-                    placeholder="Seacrh for movies..."
+                    placeholder="Search for movies..."
                     value={searchQuery}
-                    onChange={(e)=> setSearchQuery(e.target.value)}
+                    onChange={(e) => setSearchQuery(e.target.value)}
                 />
                 <button type="submit" className="search-button">Search</button>
             </form>
-            <div className="movies-gird">
+
+            
+            <div className="movies-grid">
+                {error && <div className="error-message">{error}</div>}
+                {loading && <div className="loading">Loading...</div>}
+                
                 {Array.isArray(movies) && movies.map((movie) => (
-                    movie.title.toLowerCase().startsWith(searchQuery) &&
-                        <MovieCard movie={movie} key={movie.id} /> 
+                    movie.Title && (
+                        <MovieCard movie={movie} key={movie.imdbID} />
+                    )
                 ))}
             </div>
         </div>
