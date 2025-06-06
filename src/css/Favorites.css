@@ -33,6 +33,13 @@
   line-height: 1.6;
 }
 
+.movies-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: flex-start; /* Align cards to the left, not stretched */
+  margin-top: 2rem;
+}
 
 /* Animation for new favorites being added */
 @keyframes fadeIn {
@@ -48,5 +55,26 @@
 
 .movies-grid > * {
   animation: fadeIn 0.3s ease-out forwards;
+}
+
+.movie-card {
+  width: 300px;
+  max-width: 100%;
+  min-width: 220px;
+  margin: 0.5rem;
+  /* Remove flex: 1 1 220px; to prevent stretching */
+}
+
+@media (max-width: 768px) {
+  .movies-grid {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .movie-card {
+    max-width: 100%;
+    min-width: 0;
+    width: 100%;
+    height: auto; /* Ensure card height is natural on mobile */
+  }
 }
 
