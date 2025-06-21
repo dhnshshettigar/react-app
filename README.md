@@ -3,7 +3,7 @@
 A simple movie search application built using **React** and the **OMDb API**. This app allows users to search for movies and view basic details including the title, release year, and poster.
 
 **Preview**
-https://github.com/dhnshshettigar/react-app/deployments/github-pages
+https://dhnshshettigar.github.io/react-app/
 
 ## 🚀 Features
 
