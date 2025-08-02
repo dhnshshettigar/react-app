@@ -1,4 +1,4 @@
-const API_KEY = "ef406f64"; // User's OMDb API key
+const API_KEY = "YourKey"; // User's OMDb API key
 const API_URL = "https://www.omdbapi.com/";
 
 export const getPopularMovies = async () => {
